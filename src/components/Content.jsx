@@ -30,7 +30,7 @@ function Content() {
   function addTask() {
     if (newTaskInputValue !== "") {
       setTasks(prevTasks => {
-        return [...prevTasks, { 'text': newTaskInputValue, 'done': false }]
+        return [...prevTasks, { 'text': newTaskInputValue, 'done': false, 'isFavorite': false }]
 
       })
       setNewTaskInputValue("")
@@ -43,7 +43,19 @@ function Content() {
         if (taskIndex !== index) {
           return task;
         } else {
-          return { 'text': task.text, 'done': !task.done }
+          return { 'text': task.text, 'done': !task.done, 'isFavorite': task.isFavorite }
+        }
+      })
+    })
+  }
+
+  function handleToggleFavorite(taskIndex) {
+    setTasks(prevTasks => {
+      return prevTasks.map((task, index) => {
+        if (taskIndex !== index) {
+          return task;
+        } else {
+          return { 'text': task.text, 'done': task.done, 'isFavorite': !task.isFavorite }
         }
       })
     })
@@ -57,8 +69,28 @@ function Content() {
     })
   }
 
+  function deleteAllDoneTasks() {
+    setTasks(prevTasks => {
+      return prevTasks.filter((task, index) => {
+        return task.done;
+      })
+    })
+  }
+
   const numberTotalTasks = Object.keys(tasks).length;
   const numberDoneTasks = Object.keys(tasks.filter(t => (t.done))).length;
+
+
+  function getTask(task, index) {
+    return <Task text={task.text}
+      done={task.done}
+      key={index}
+      isFavorite={task.isFavorite}
+      handleDelete={() => handleDelete(index)}
+      handleTaskCheckbox={() => handleTaskCheckbox(index)}
+      handleToggleFavorite={() => handleToggleFavorite(index)}
+    />
+  }
 
   return (
     <div className='flex flex-col gap-4 w-full px-4 lg:w-1/2'>
@@ -70,30 +102,35 @@ function Content() {
         addTask={addTask}
       />
 
-      {numberTotalTasks === 0 ? <h1></h1> 
+      {numberTotalTasks === 0 ? <h1></h1>
         : <h1 className='flex justify-center text-2xl font-bold'>{numberDoneTasks} / {numberTotalTasks} {numberDoneTasks === numberTotalTasks ? "👍" : ""}</h1>}
 
 
       <div className='flex flex-col gap-3'>
+      {tasks.map((task, index) => {
+          if (task.isFavorite &&! task.done) {
+            return getTask(task, index)
+          }
+        })}
         {tasks.map((task, index) => {
-          if (task.done === false) {
-            return <Task text={task.text}
-              done={task.done} key={index}
-              handleDelete={() => handleDelete(index)}
-              handleTaskCheckbox={() => handleTaskCheckbox(index)} />
+          if (task.done === false &&! task.isFavorite) {
+            return getTask(task, index)
           }
         })}
       </div>
 
-      {numberDoneTasks > 0 ? <h1 className='text-neutral-600 font-semibold'>Beendet:</h1> : <h1 className='text-neutral-600 font-semibold'></h1>}
+      {
+      numberDoneTasks > 0 ? 
+      <div className='flex justify-between'>
+        <h1 className='text-neutral-600 font-semibold'>Beendet:</h1> 
+        <button onClick={deleteAllDoneTasks} className='text-neutral-700 font-light hover:text-neutral-500'>erledigte Aufgaben löschen</button></div>: 
+        <h1 className='text-neutral-600 font-semibold'></h1>
+      }
 
       <div className='flex flex-col gap-3'>
         {tasks.map((task, index) => {
           if (task.done) {
-            return <Task text={task.text}
-              done={task.done} key={index}
-              handleDelete={() => handleDelete(index)}
-              handleTaskCheckbox={() => handleTaskCheckbox(index)} />
+            return getTask(task, index)
           }
         })}
       </div>

@@ -1,7 +1,14 @@
 import React from 'react'
+
+// Import Icons
 import { BsTrash } from 'react-icons/bs'
 import { MdCheckBoxOutlineBlank } from 'react-icons/md'
-import {MdCheckBox} from 'react-icons/md'
+import { MdCheckBox } from 'react-icons/md'
+import { AiOutlineThunderbolt } from 'react-icons/ai'
+import { AiFillThunderbolt } from 'react-icons/ai'
+
+// Import Components
+
 
 function Task(props) {
 
@@ -11,11 +18,20 @@ function Task(props) {
   return (
     <div className={props.done ? styleDone : style}>
       <div className='hover:cursor-pointer' onClick={() => props.handleTaskCheckbox(props.index)}>
+
         {props.done ? <MdCheckBox className='text-2xl text-blue-600' /> : <MdCheckBoxOutlineBlank className='text-2xl text-neutral-500' />}
+
       </div>
+
       <p className='break-all grow text-neutral-300'>{props.text}</p>
+
+      <div onClick={() => props.handleToggleFavorite(props.index)}>
+        {props.isFavorite ? <AiFillThunderbolt className='text-2xl text-yellow-500 hover:cursor-pointer' /> :
+          <AiOutlineThunderbolt className='text-2xl text-neutral-700 hover:cursor-pointer' />}
+      </div>
+
       <div>
-        <BsTrash onClick={() => props.handleDelete(props.index)} className='text-2xl text-neutral-500 hover:cursor-pointer' />
+        <BsTrash onClick={() => props.handleDelete(props.index)} className='text-2xl text-neutral-700 hover:cursor-pointer' />
       </div>
 
     </div>
