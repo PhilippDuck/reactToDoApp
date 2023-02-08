@@ -72,7 +72,7 @@ function Content() {
   function deleteAllDoneTasks() {
     setTasks(prevTasks => {
       return prevTasks.filter((task, index) => {
-        return task.done;
+        return !task.done;
       })
     })
   }
