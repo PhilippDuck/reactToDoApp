@@ -4,8 +4,7 @@ import React from 'react'
 import { BsTrash } from 'react-icons/bs'
 import { MdCheckBoxOutlineBlank } from 'react-icons/md'
 import { MdCheckBox } from 'react-icons/md'
-import { AiOutlineThunderbolt } from 'react-icons/ai'
-import { AiFillThunderbolt } from 'react-icons/ai'
+import { GiPlasticDuck } from 'react-icons/gi'
 
 // Import Components
 
@@ -26,8 +25,8 @@ function Task(props) {
       <p className='break-all grow text-neutral-300'>{props.text}</p>
 
       <div onClick={() => props.handleToggleFavorite(props.index)}>
-        {props.isFavorite ? <AiFillThunderbolt className='text-2xl text-yellow-500 hover:cursor-pointer' /> :
-          <AiOutlineThunderbolt className='text-2xl text-neutral-700 hover:cursor-pointer' />}
+        {props.isFavorite ? <GiPlasticDuck className='text-2xl text-yellow-500 hover:cursor-pointer' /> :
+          <GiPlasticDuck className='text-2xl text-neutral-700 hover:cursor-pointer' />}
       </div>
 
       <div>
