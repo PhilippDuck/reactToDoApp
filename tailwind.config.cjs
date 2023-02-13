@@ -5,7 +5,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        openmenu:  'openmenu 1s ease-in',
+        closemenu:  'closemenu 1s ease-in',
+    },
+    },
   },
   plugins: [],
 }

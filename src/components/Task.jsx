@@ -11,7 +11,7 @@ import { GiPlasticDuck } from 'react-icons/gi'
 
 function Task(props) {
 
-  const styleDone = 'hover:brightness-110 flex items-center bg-neutral-800 rounded-lg shadow-md p-4 gap-5 opacity-30'
+  const styleDone = 'hover:brightness-110 flex items-center bg-neutral-800 rounded-lg shadow-md p-4 gap-5 opacity-30 line-through'
   const style = 'hover:brightness-110 flex items-center bg-neutral-800 rounded-lg shadow-md p-4 gap-5 '
 
   return (
