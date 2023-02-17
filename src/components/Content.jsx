@@ -93,20 +93,21 @@ function Content() {
   }
 
   return (
-    <div className='flex flex-col gap-4 w-full px-4 lg:w-1/2'>
-
-      <NewTaskForm
+    <>
+    <div className='mt-16  w-full lg:w-1/2 fixed'>
+      <NewTaskForm 
         newTaskInputValue={newTaskInputValue}
         handleInputChange={handleInputChange}
         handleKeyDown={handleKeyDown}
         addTask={addTask}
       />
+      </div>
+    <div className='mt-20 flex flex-col gap-4 w-full px-4 lg:w-1/2'>
+      
 
-      {numberTotalTasks === 0 ? <h1></h1>
-        : <h1 className='flex justify-center text-2xl font-bold'>{numberDoneTasks} / {numberTotalTasks} {numberDoneTasks === numberTotalTasks ? "👍" : ""}</h1>}
+      
 
-
-      <div className='flex flex-col gap-3'>
+      <div className=' flex flex-col gap-3 mt-16'>
       {tasks.map((task, index) => {
           if (task.isFavorite &&! task.done) {
             return getTask(task, index)
@@ -136,6 +137,7 @@ function Content() {
       </div>
 
     </div>
+    </>
   )
 }
 
