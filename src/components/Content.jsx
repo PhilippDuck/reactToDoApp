@@ -105,8 +105,6 @@ function Content() {
     <div className='mt-20 flex flex-col gap-4 w-full px-4 lg:w-1/2'>
       
 
-      
-
       <div className=' flex flex-col gap-3 mt-16'>
       {tasks.map((task, index) => {
           if (task.isFavorite &&! task.done) {
