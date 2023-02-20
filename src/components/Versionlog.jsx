@@ -8,7 +8,7 @@ function Versionlog(props) {
           <ul className='text-neutral-400 list-disc pl-4 mt-3'>
             {
                 props.changes.map((e, index) => {
-                    return <li>{e}</li>
+                    return <li key={index}>{e}</li>
                 })
             }
           </ul>
