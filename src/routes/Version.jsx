@@ -7,6 +7,18 @@ function Version() {
       <p className="text-xl font-semibold ">Versionshinweise</p>
 
       <Versionlog
+        date="22.02.2023"
+        version="0.1.4"
+        changes={["Benutzerdefinierte Listen über Menü löschbar", "Menü kann bei überlänge gescrollt werden."]}
+      />
+
+      <Versionlog
+        date="20.02.2023"
+        version="0.1.3"
+        changes={["Dynamische Routen Test"]}
+      />
+
+      <Versionlog
         date="19.02.2023"
         version="0.1.2"
         changes={["Versionsänderungen in eigener JSX Komponente ausgelagert."]}
